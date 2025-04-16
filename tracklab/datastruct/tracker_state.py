@@ -112,6 +112,15 @@ class TrackerState(AbstractContextManager):
         if self.load_from_public_dets:
             self.load_public_dets(self.load_columns)
 
+        if self.load_file and not (self.json_file or self.load_from_groundtruth or self.load_from_public_dets):
+            with zipfile.ZipFile(self.load_file) as zf:
+                if "summary.json" in zf.namelist():
+                    image_file = next(f for f in zf.namelist() if "image" in f)
+                    detection_file = image_file.replace("_image", "")
+                    with zf.open(detection_file) as fp:
+                        self.detections_pred = pickle.load(fp)
+                    with zf.open(image_file) as fp:
+                        self.image_pred = pickle.load(fp)
 
     def load_groundtruth(self, load_columns):
         from tracklab.engine.engine import merge_dataframes

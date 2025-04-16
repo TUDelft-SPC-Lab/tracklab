@@ -19,9 +19,9 @@ defaults:
 # - Defines the order in which the modules will be called
 # - If loading a tracking state from disk, remove modules whose outputs are already provided in the loaded state
 # Use 'pipeline: []' for an empty pipeline
-pipeline:
-  - bbox_detector
-  - track
+pipeline: []
+  # - bbox_detector
+  # - track
 
 # Experiment name
 experiment_name: "tracklab"
@@ -50,3 +50,9 @@ hydra:
     dir: "outputs/${experiment_name}/${now:%Y-%m-%d}/${now:%H-%M-%S}"
   sweep:
     dir: "multirun_outputs/${experiment_name}/${now:%Y-%m-%d}/${now:%H-%M-%S}"
+
+# state:
+  # save_file: ${dataset.track_eval.TRACKERS_FOLDER}/tracker_state.zip
+  # compression: 50
+  # load_file: ${dataset.track_eval.TRACKERS_FOLDER}/tracker_state.zip
+  # load_file: "${project_dir}/outputs/tracklab/2025-04-10/10-13-48/eval/pred/tracker_state.zip"
