@@ -1,0 +1,5 @@
+
+_target_: tracklab.wrappers.ConflabLoadBBox
+batch_size: 32
+cfg:
+  annotations: /tudelft.net/staff-umbrella/neon/experiments/VIT003
