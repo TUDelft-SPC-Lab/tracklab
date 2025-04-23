@@ -3,8 +3,8 @@ defaults:
 
 _target_: tracklab.wrappers.ConflabMOT
 
-# dataset_path: ${data_dir}/ConflabMOT
-# annotation_path: ${data_dir}/ConflabMOT
+# IMPORTANT: when changing the dataset, make sure to change the path in the conflab_load_bbox.yaml too
+# tracklab/configs/modules/bbox_detector/conflab_load_bbox.yaml
 dataset_path: /tudelft.net/staff-umbrella/neon/experiments/VIT003
 annotation_path: /tudelft.net/staff-umbrella/neon/experiments/VIT003
 eval_set: "val"
