@@ -130,7 +130,7 @@ def load_set(img_folder_path, annotations_path, nvid=-1, vids_filter_set=None):
         'id': [image_counter + i for i in range(0, nframes)],
         'video_id': len(video_metadatas_list),
         'file_path': [os.path.join(img_folder_path, f'{i:09d}.jpg') for i in
-                        range(1, nframes + 1)],
+                        range(0, nframes)],
 
     })
     image_counter += nframes
