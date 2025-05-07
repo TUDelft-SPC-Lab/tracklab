@@ -97,4 +97,5 @@ class DetectionLevelModule(Module):
             collate_fn=type(self).collate_fn,
             num_workers=engine.num_workers,
             persistent_workers=False,
+            drop_last=True,
         )

@@ -99,6 +99,7 @@ dataloader = torch.utils.data.DataLoader(
     num_workers=4,
     shuffle=False,
     collate_fn=custom_list_collate,
+    drop_last=True,
 )
 
 print("Init TVCalibModule")

@@ -96,6 +96,7 @@ class ReidDataset(ImageDataset):
             num_workers=0,  # FIXME issue with higher
             collate_fn=type(self.pose_model).collate_fn if self.pose_model else None,
             persistent_workers=False,
+            drop_last=True,
         )
         self.eval_metric = self.reid_config.eval_metric
         self.multi_video_queries_only = self.reid_config.multi_video_queries_only
