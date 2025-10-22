@@ -7,9 +7,8 @@ defaults:
   - dataset: conflab
   - eval: trackeval
   - engine: offline
-  - state: no_save
-  - visualization: save_videos
-  - modules/bbox_detector: conflab_load_bbox # yolov8
+  - visualization: keypoints
+  - modules/bbox_detector: conflab_load_bbox # yolo_ultralytics
   - modules/pose_estimator: yolo_ultralytics-pose
   - modules/reid: kpr
   - modules/track: oc_sort
