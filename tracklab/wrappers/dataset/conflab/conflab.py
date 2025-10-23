@@ -157,8 +157,9 @@ def load_set(img_folder_path, annotations_path, nvid=-1, vids_filter_set=None):
         'track_id'].astype(str)
 
     # Add category id to detections
-    category_to_id = {category['name']: category['id'] for category in categories_list}
+    # category_to_id = {category['name']: category['id'] for category in categories_list}
     # detections['category_id'] = detections['category'].apply(lambda x: category_to_id[x])
+    detections['category_id'] = 1  # 'person' class
 
     detections.set_index("id", drop=False, inplace=True)
     image_metadata.set_index("id", drop=False, inplace=True)
