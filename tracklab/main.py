@@ -62,7 +62,7 @@ def main(cfg):
         tracking_engine.track_dataset()
 
         # Evaluation
-        evaluate(cfg, evaluator, tracker_state)
+        # evaluate(cfg, evaluator, tracker_state)
 
         # Save tracker state
         if tracker_state.save_file is not None:
