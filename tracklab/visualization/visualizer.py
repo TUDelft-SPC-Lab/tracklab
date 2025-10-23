@@ -55,6 +55,9 @@ class DetectionVisualizer(Visualizer, ABC):
             bbox_gt = torch.empty((0, 4))
         cost_matrix = box_iou(bbox_pred, bbox_gt)
 
+        # Set NaN to 1.0 (perfect overlap)
+        cost_matrix[torch.isnan(cost_matrix)] = 1.0
+
         row_idxs, col_idxs = linear_sum_assignment(1 - cost_matrix)
         gt_rest = set(range(len(bbox_gt))) - set(col_idxs)
         for i in range(max(len(bbox_pred), len(bbox_gt))):
