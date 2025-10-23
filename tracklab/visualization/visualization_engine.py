@@ -128,6 +128,9 @@ class VisualizationEngine(Callback):
                     video_writer.write(output_image)
                 progress.on_module_step_end(None, "vis", None, None)
 
+        if self.save_videos:
+            video_writer.release()
+
     def draw_frame(self, image_metadata, detections_pred, detections_gt,
                    image_pred, image_gt, nframes):
         image = cv2_load_image(image_metadata.file_path)
