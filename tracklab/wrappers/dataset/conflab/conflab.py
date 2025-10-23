@@ -99,7 +99,7 @@ def load_set(img_folder_path, annotations_path, nvid=-1, vids_filter_set=None):
     nframes = len(detections_df['image_id'].unique())
     video_metadata = {
         'id': len(video_metadatas_list) + 1,
-        'name': '',
+        'name': 'predictions',
         'nframes': nframes,
         'frame_rate': 60,
         'seq_length': nframes,
@@ -127,6 +127,7 @@ def load_set(img_folder_path, annotations_path, nvid=-1, vids_filter_set=None):
     # Append image metadata
     img_metadata_df = pd.DataFrame({
         'frame': [i for i in range(0, nframes)],
+        'nframes': nframes,
         'id': [image_counter + i for i in range(0, nframes)],
         'video_id': len(video_metadatas_list),
         'file_path': [os.path.join(img_folder_path, f'{i:09d}.jpg') for i in
@@ -177,6 +178,7 @@ def load_set(img_folder_path, annotations_path, nvid=-1, vids_filter_set=None):
     image_metadata_columns = ['video_id', 'frame', 'file_path', 'is_labeled']
     image_metadata_columns.extend(set(image_metadata.columns) - set(image_metadata_columns))
     image_metadata = image_metadata[image_metadata_columns]
+    image_gt = image_metadata.copy()
     detections_column_ordered = ['image_id', 'video_id', 'track_id', 'person_id', 'bbox_ltwh', 'bbox_conf', 'class', 'visibility']
     detections_column_ordered.extend(set(detections.columns) - set(detections_column_ordered))
     detections = detections[detections_column_ordered]
@@ -185,4 +187,5 @@ def load_set(img_folder_path, annotations_path, nvid=-1, vids_filter_set=None):
         video_metadata,
         image_metadata,
         detections,
+        image_gt
     )
