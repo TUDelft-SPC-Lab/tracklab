@@ -22,6 +22,7 @@ class ConflabLoadBBox(ImageLevelModule):
         "image_id",
         "video_id",
         "category_id",
+        "track_id",
         "bbox_ltwh",
         "bbox_conf",
     ]
@@ -60,6 +61,7 @@ class ConflabLoadBBox(ImageLevelModule):
                             bbox_conf=1,
                             video_id=metadata.video_id,
                             category_id=1,  # `person` class in posetrack
+                            track_id=1,  # This says that each box corresponds to person 1
                         ),
                         name=self.id,
                     )
