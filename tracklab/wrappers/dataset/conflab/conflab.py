@@ -3,7 +3,7 @@ import os
 import numpy as np
 import pandas as pd
 import json
-
+import copy
 from pathlib import Path
 from tqdm import tqdm
 from tracklab.datastruct import TrackingDataset, TrackingSet
@@ -24,12 +24,13 @@ class ConflabMOT(TrackingDataset):
         # train_set = load_set(self.dataset_path / "train", nvid, vids_dict["train"])
         train_set = load_set(self.dataset_path / "images_test",self.dataset_path /"keypoints_and_bboxes_test.json", nvid, vids_dict["train"])
         # test_set = load_set(self.dataset_path / "test", nvid, vids_dict["val"])
-        test_set = train_set
+        test_set = copy.deepcopy(train_set)
+        val_set = copy.deepcopy(train_set)
         
         sets = {
             "train": train_set,
             "test": test_set,
-            "val": test_set,
+            "val": val_set,
         }
 
         super().__init__(dataset_path, sets, nvid=-1, vids_dict=None, *args, **kwargs)
